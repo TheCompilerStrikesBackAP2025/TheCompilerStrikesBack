@@ -16,8 +16,9 @@ pub fn create_planet(
     rx_orchestrator: Receiver<messages::OrchestratorToPlanet>,
     tx_orchestrator: Sender<messages::PlanetToOrchestrator>,
     rx_explorer: Receiver<messages::ExplorerToPlanet>,
+    planet_id: u32
 ) -> Planet {
-    let id = 1;
+    let id = planet_id;
     let ai = AI::default();
     let gen_rules = vec![BasicResourceType::Silicon];
     let comb_rules = vec![ComplexResourceType::Robot];

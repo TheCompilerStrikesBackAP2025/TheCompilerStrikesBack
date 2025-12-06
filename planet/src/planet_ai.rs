@@ -222,6 +222,22 @@ impl PlanetAI for AI {
                     )),
                 }),
                 ComplexResourceRequest::Diamond(carbon1, carbon2) => {
+                    if let Some((cell, _index)) = state.full_cell() {
+                        return match combinator.make_diamond(carbon1, carbon2, cell) {
+                            Ok(complex) => Some(CombineResourceResponse {
+                                complex_response: Ok(ComplexResource::Diamond(complex)),
+                            }),
+                            Err((err, carbon1, carbon2)) => Some(CombineResourceResponse {
+                                complex_response: Err((
+                                    err,
+                                    GenericResource::BasicResources(BasicResource::Carbon(
+                                        carbon1,
+                                    )),
+                                    GenericResource::BasicResources(BasicResource::Carbon(carbon2)),
+                                )),
+                            }),
+                        };
+                    }
                     Some(CombineResourceResponse {
                         complex_response: Err((
                             "there isn't a recipe for diamond".to_string(),
@@ -245,6 +261,20 @@ impl PlanetAI for AI {
                     )),
                 }),
                 ComplexResourceRequest::AIPartner(robot, diamond) => {
+                    if let Some((cell, _index)) = state.full_cell() {
+                        return match combinator.make_aipartner(robot, diamond, cell) {
+                            Ok(complex) => Some(CombineResourceResponse {
+                                complex_response: Ok(ComplexResource::AIPartner(complex)),
+                            }),
+                            Err((err, robot, diamond)) => Some(CombineResourceResponse {
+                                complex_response: Err((
+                                    err,
+                                    GenericResource::ComplexResources(ComplexResource::Robot(robot)),
+                                    GenericResource::ComplexResources(ComplexResource::Diamond(diamond)),
+                                )),
+                            }),
+                        };
+                    }
                     Some(CombineResourceResponse {
                         complex_response: Err((
                             "there isn't a recipe for AI partner".to_string(),
