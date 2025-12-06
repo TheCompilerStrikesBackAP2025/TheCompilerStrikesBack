@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="CargoProjects">
+    <cargoProject FILE="$PROJECT_DIR$/../Cargo.toml">
+      <package file="$PROJECT_DIR$/../planet">
+        <feature name="default" enabled="true" />
+      </package>
+      <package file="$PROJECT_DIR$">
+        <feature name="default" enabled="true" />
+      </package>
+    </cargoProject>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e6f8aee2-e5c4-4d43-827a-bccbbb4a99d8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.cargo/config.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Cargo.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../planet/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../planet/.idea/planet.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../planet/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../planet/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../planet/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../planet/src/lib.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../planet/src/planet.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../planet/src/planet_ai.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/.rustc_info.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/CACHEDIR.TAG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.cargo-lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/common-game-6ddeb77d906f8274/dep-lib-common_game" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/common-game-6ddeb77d906f8274/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/common-game-6ddeb77d906f8274/lib-common_game" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/common-game-6ddeb77d906f8274/lib-common_game.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/common-game-eb40963a8019c95a/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/common-game-eb40963a8019c95a/lib-common_game" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/common-game-eb40963a8019c95a/lib-common_game.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-channel-4b4930e22ac0e9cc/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-channel-4b4930e22ac0e9cc/lib-crossbeam_channel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-channel-4b4930e22ac0e9cc/lib-crossbeam_channel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-channel-62a45d463ad13645/dep-lib-crossbeam_channel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-channel-62a45d463ad13645/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-channel-62a45d463ad13645/lib-crossbeam_channel" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-channel-62a45d463ad13645/lib-crossbeam_channel.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-07df5ae43c0e169f/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-07df5ae43c0e169f/lib-crossbeam_utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-07df5ae43c0e169f/lib-crossbeam_utils.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-1b156632a98ada10/dep-lib-crossbeam_utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-1b156632a98ada10/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-1b156632a98ada10/lib-crossbeam_utils" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-1b156632a98ada10/lib-crossbeam_utils.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-9ae144f632e5f8ee/build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-9ae144f632e5f8ee/build-script-build-script-build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-9ae144f632e5f8ee/dep-build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-9ae144f632e5f8ee/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-c9f816f4ff413510/run-build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/crossbeam-utils-c9f816f4ff413510/run-build-script-build-script-build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/lazy_static-256fc86c96e05d9e/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/lazy_static-256fc86c96e05d9e/lib-lazy_static" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/lazy_static-256fc86c96e05d9e/lib-lazy_static.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/lazy_static-b0f6458a25ec0ef7/dep-lib-lazy_static" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/lazy_static-b0f6458a25ec0ef7/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/lazy_static-b0f6458a25ec0ef7/lib-lazy_static" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/lazy_static-b0f6458a25ec0ef7/lib-lazy_static.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/log-1ebf914ad87573ce/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/log-1ebf914ad87573ce/lib-log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/log-1ebf914ad87573ce/lib-log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/log-5af85e5b69d9b232/dep-lib-log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/log-5af85e5b69d9b232/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/log-5af85e5b69d9b232/lib-log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/log-5af85e5b69d9b232/lib-log.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-0746905aa19a2597/run-build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-0746905aa19a2597/run-build-script-build-script-build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-d6a3c781c8f40e6b/dep-lib-paste" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-d6a3c781c8f40e6b/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-d6a3c781c8f40e6b/lib-paste" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-d6a3c781c8f40e6b/lib-paste.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-f4a7eda84766cd01/build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-f4a7eda84766cd01/build-script-build-script-build.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-f4a7eda84766cd01/dep-build-script-build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/paste-f4a7eda84766cd01/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-3d0cbd3a00d32ff5/dep-lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-3d0cbd3a00d32ff5/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-3d0cbd3a00d32ff5/lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-3d0cbd3a00d32ff5/lib-planet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-57ba6daa9a11400f/dep-lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-57ba6daa9a11400f/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-57ba6daa9a11400f/lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-57ba6daa9a11400f/lib-planet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-57d8e0fef63fbe16/dep-lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-57d8e0fef63fbe16/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-57d8e0fef63fbe16/lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-57d8e0fef63fbe16/lib-planet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-7b591c5ab58922fa/dep-test-lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-7b591c5ab58922fa/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-7b591c5ab58922fa/test-lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-7b591c5ab58922fa/test-lib-planet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-d688a9cde183b00c/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-d688a9cde183b00c/lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-d688a9cde183b00c/lib-planet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-f65afe475a6f9589/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-f65afe475a6f9589/test-lib-planet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/planet-f65afe475a6f9589/test-lib-planet.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-2b9032b8408ac962/bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-2b9032b8408ac962/bin-project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-2b9032b8408ac962/dep-bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-2b9032b8408ac962/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-5188ea43317dfea1/bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-5188ea43317dfea1/bin-project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-5188ea43317dfea1/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-81621148fd5adf9c/dep-test-bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-81621148fd5adf9c/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-81621148fd5adf9c/test-bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-81621148fd5adf9c/test-bin-project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d0123d86d6b51bdf/bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d0123d86d6b51bdf/bin-project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d0123d86d6b51bdf/dep-bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d0123d86d6b51bdf/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d3c8c847de0cce5f/bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d3c8c847de0cce5f/bin-project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d3c8c847de0cce5f/dep-bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d3c8c847de0cce5f/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d55cf7bf9bd1484b/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d55cf7bf9bd1484b/test-bin-project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/.fingerprint/project-d55cf7bf9bd1484b/test-bin-project.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/crossbeam-utils-9ae144f632e5f8ee/build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/crossbeam-utils-9ae144f632e5f8ee/build_script_build-9ae144f632e5f8ee" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/crossbeam-utils-9ae144f632e5f8ee/build_script_build-9ae144f632e5f8ee.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/crossbeam-utils-c9f816f4ff413510/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/crossbeam-utils-c9f816f4ff413510/output" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/crossbeam-utils-c9f816f4ff413510/root-output" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/crossbeam-utils-c9f816f4ff413510/stderr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/paste-0746905aa19a2597/invoked.timestamp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/paste-0746905aa19a2597/output" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/paste-0746905aa19a2597/root-output" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/paste-0746905aa19a2597/stderr" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/paste-f4a7eda84766cd01/build-script-build" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/paste-f4a7eda84766cd01/build_script_build-f4a7eda84766cd01" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/build/paste-f4a7eda84766cd01/build_script_build-f4a7eda84766cd01.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.0.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.1.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.2.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.3.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.4.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.5.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.6.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.7.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.common_game.e6507fc1f8e2717-cgu.8.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/common_game-6ddeb77d906f8274.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/crossbeam_channel-62a45d463ad13645.crossbeam_channel.7e26c2596bbcca20-cgu.0.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/crossbeam_channel-62a45d463ad13645.crossbeam_channel.7e26c2596bbcca20-cgu.1.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/crossbeam_channel-62a45d463ad13645.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/crossbeam_utils-1b156632a98ada10.crossbeam_utils.7a374e1e5dc0ffa6-cgu.0.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/crossbeam_utils-1b156632a98ada10.crossbeam_utils.7a374e1e5dc0ffa6-cgu.1.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/crossbeam_utils-1b156632a98ada10.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/lazy_static-b0f6458a25ec0ef7.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/lazy_static-b0f6458a25ec0ef7.lazy_static.6e06aae2459cc1b-cgu.0.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libcommon_game-6ddeb77d906f8274.rlib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libcommon_game-6ddeb77d906f8274.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libcrossbeam_channel-62a45d463ad13645.rlib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libcrossbeam_channel-62a45d463ad13645.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libcrossbeam_utils-1b156632a98ada10.rlib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libcrossbeam_utils-1b156632a98ada10.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/liblazy_static-b0f6458a25ec0ef7.rlib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/liblazy_static-b0f6458a25ec0ef7.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/liblog-5af85e5b69d9b232.rlib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/liblog-5af85e5b69d9b232.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libpaste-d6a3c781c8f40e6b.dylib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libplanet-3d0cbd3a00d32ff5.rlib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libplanet-3d0cbd3a00d32ff5.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libplanet-57ba6daa9a11400f.rlib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libplanet-57ba6daa9a11400f.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libplanet-57d8e0fef63fbe16.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libplanet-7b591c5ab58922fa.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libproject-2b9032b8408ac962.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/libproject-81621148fd5adf9c.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/log-5af85e5b69d9b232.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/log-5af85e5b69d9b232.log.f1cc53794558b6cf-cgu.0.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/paste-d6a3c781c8f40e6b.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/planet-3d0cbd3a00d32ff5.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/planet-3d0cbd3a00d32ff5.el6x644iqtwaztta933lrihbf.1mf8yyh.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/planet-57ba6daa9a11400f.1vqya1zybeoz74sad18mo245t.0ns4ljl.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/planet-57ba6daa9a11400f.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/planet-57d8e0fef63fbe16.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/planet-7b591c5ab58922fa.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-2b9032b8408ac962.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-81621148fd5adf9c.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d0123d86d6b51bdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d0123d86d6b51bdf.0dpjspbbyz3quk1o4d625e6og.1bi1923.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d0123d86d6b51bdf.4i4v0mycrbzequucayihvu2sj.1bi1923.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d0123d86d6b51bdf.5zktw29v2pdvuzacaf9vgwb7t.1bi1923.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d0123d86d6b51bdf.6bu2x2ux1d7p9si4cdvjsaet8.1bi1923.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d0123d86d6b51bdf.bejbmpjb81bpb11illa26jbz6.1bi1923.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d0123d86d6b51bdf.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d0123d86d6b51bdf.f1mhroh9qj05wgsza1u0iws3o.1bi1923.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d3c8c847de0cce5f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d3c8c847de0cce5f.30ddr0prppt0a10bfn5p6dtfy.0ihuh3p.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d3c8c847de0cce5f.5l7ni6ifbmdslrn8t1djylqin.0ihuh3p.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d3c8c847de0cce5f.81m435edxnq66gkc5ib6zv80s.0ihuh3p.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d3c8c847de0cce5f.8u9v3fbccx99zc98vkzdkfcts.0ihuh3p.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d3c8c847de0cce5f.c67amndo46zociiexyc5bhbr6.0ihuh3p.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d3c8c847de0cce5f.cn0tqiazxc2y9cgv60kzmigqe.0ihuh3p.rcgu.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/deps/project-d3c8c847de0cce5f.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-213ep1va9gke6/s-hdnqvso12x-0q21kjw-7ae7tk68k4chgf097ygrqy70x/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-213ep1va9gke6/s-hdnqvso12x-0q21kjw-7ae7tk68k4chgf097ygrqy70x/el6x644iqtwaztta933lrihbf.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-213ep1va9gke6/s-hdnqvso12x-0q21kjw-7ae7tk68k4chgf097ygrqy70x/metadata.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-213ep1va9gke6/s-hdnqvso12x-0q21kjw-7ae7tk68k4chgf097ygrqy70x/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-213ep1va9gke6/s-hdnqvso12x-0q21kjw-7ae7tk68k4chgf097ygrqy70x/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-213ep1va9gke6/s-hdnqvso12x-0q21kjw.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-256z06yue8kod/s-hdnqvacpp6-1gmh3s0-dkrg0j0sxxcsowulu4g0ovm5p/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-256z06yue8kod/s-hdnqvacpp6-1gmh3s0-dkrg0j0sxxcsowulu4g0ovm5p/metadata.rmeta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-256z06yue8kod/s-hdnqvacpp6-1gmh3s0-dkrg0j0sxxcsowulu4g0ovm5p/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-256z06yue8kod/s-hdnqvacpp6-1gmh3s0-dkrg0j0sxxcsowulu4g0ovm5p/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-256z06yue8kod/s-hdnqvacpp6-1gmh3s0.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-34c63ea4ejbw3/s-hdnqvacpp0-0lra7wg-dshtc4ejqet83yr5psm4im2rb/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-34c63ea4ejbw3/s-hdnqvacpp0-0lra7wg-dshtc4ejqet83yr5psm4im2rb/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-34c63ea4ejbw3/s-hdnqvacpp0-0lra7wg-dshtc4ejqet83yr5psm4im2rb/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/planet-34c63ea4ejbw3/s-hdnqvacpp0-0lra7wg.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-0vey427bi3i14/s-hdnqvaj5p5-00h6z8t-8jidwod0j40thdfxm0cip6dx5/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-0vey427bi3i14/s-hdnqvaj5p5-00h6z8t-8jidwod0j40thdfxm0cip6dx5/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-0vey427bi3i14/s-hdnqvaj5p5-00h6z8t-8jidwod0j40thdfxm0cip6dx5/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-0vey427bi3i14/s-hdnqvaj5p5-00h6z8t.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-2hjmcv16w6twi/s-hdnqvaj5p7-171ty8a-cm6mkqt1jwg4m346wk1gqgmet/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-2hjmcv16w6twi/s-hdnqvaj5p7-171ty8a-cm6mkqt1jwg4m346wk1gqgmet/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-2hjmcv16w6twi/s-hdnqvaj5p7-171ty8a-cm6mkqt1jwg4m346wk1gqgmet/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-2hjmcv16w6twi/s-hdnqvaj5p7-171ty8a.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/30ddr0prppt0a10bfn5p6dtfy.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/5l7ni6ifbmdslrn8t1djylqin.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/81m435edxnq66gkc5ib6zv80s.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/8u9v3fbccx99zc98vkzdkfcts.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/c67amndo46zociiexyc5bhbr6.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/cn0tqiazxc2y9cgv60kzmigqe.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg-28hv94818nus3z39gf0jw4jhg/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-304npmj6xt3tj/s-hdnr4r9eda-13vjnsg.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/0dpjspbbyz3quk1o4d625e6og.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/4i4v0mycrbzequucayihvu2sj.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/5zktw29v2pdvuzacaf9vgwb7t.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/6bu2x2ux1d7p9si4cdvjsaet8.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/bejbmpjb81bpb11illa26jbz6.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/dep-graph.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/f1mhroh9qj05wgsza1u0iws3o.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/query-cache.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px-ahpo9agrlytb5y4hptjiofwiu/work-products.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/incremental/project-32efh0op15l5u/s-hdnqvso123-1yzn4px.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/libplanet.d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/libplanet.rlib" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/project" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../target/debug/project.d" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="RsBuildProfile:dev" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="OQQvtmO5" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="36UI1yOEX1Aqg9FrnfHemOc4fjK" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.rust.reset.selective.auto.import": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/Users/gorandevetak/Desktop/University/AdvancedProgramming/progetto/TheCompilerStrikesBack/project",
+    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
+    "org.rust.first.attach.projects": "true",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+      <option name="command" value="run --package project --bin project" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <option name="emulateTerminal" value="true" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="withSudo" value="false" />
+      <option name="buildTarget" value="REMOTE" />
+      <option name="backtrace" value="SHORT" />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e6f8aee2-e5c4-4d43-827a-bccbbb4a99d8" name="Changes" comment="" />
+      <created>1765054511312</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1765054511312</updated>
+      <workItem from="1765054512545" duration="7000" />
+      <workItem from="1765055405648" duration="13000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

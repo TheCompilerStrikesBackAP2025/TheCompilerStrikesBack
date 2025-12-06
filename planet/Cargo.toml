@@ -1,0 +1,8 @@
+[package]
+name = "planet"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+common-game = { git = "ssh://git@github.com/unitn-ap-2025/common.git" }
+crossbeam-channel = "0.5.15"

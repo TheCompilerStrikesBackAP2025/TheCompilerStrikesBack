@@ -1,0 +1,294 @@
+use common_game::components::planet::PlanetType::B;
+use common_game::components::planet::{PlanetAI, PlanetState};
+use common_game::components::resource::{
+    BasicResource, BasicResourceType, Carbon, Combinator, ComplexResource, ComplexResourceRequest,
+    Generator, GenericResource, Hydrogen, Life, Robot, Silicon,
+};
+use common_game::components::rocket::Rocket;
+use common_game::components::sunray::Sunray;
+use common_game::logging::{ActorType, Channel, EventType, LogEvent};
+use common_game::protocols::messages::PlanetToExplorer::{
+    AvailableEnergyCellResponse, CombineResourceResponse, GenerateResourceResponse,
+    SupportedCombinationResponse, SupportedResourceResponse,
+};
+use common_game::protocols::messages::PlanetToOrchestrator::{
+    AsteroidAck, InternalStateResponse, StartPlanetAIResult, StopPlanetAIResult, SunrayAck,
+};
+use common_game::protocols::messages::{
+    ExplorerToPlanet, OrchestratorToPlanet, PlanetToExplorer, PlanetToOrchestrator,
+};
+use std::cmp::PartialEq;
+use std::collections::BTreeMap;
+
+#[derive(PartialEq)]
+enum PlanetStatus {
+    STOPPED,
+    RUNNING,
+}
+
+pub struct AI {
+    planet_status: PlanetStatus,
+    explorers_on_the_planet: Vec<u32>,
+}
+
+impl Default for AI {
+    fn default() -> Self {
+        AI::new()
+    }
+}
+
+impl AI {
+    fn new() -> Self {
+        Self {
+            planet_status: PlanetStatus::STOPPED,
+            explorers_on_the_planet: Vec::new(),
+        }
+    }
+}
+
+impl PlanetAI for AI {
+    fn handle_orchestrator_msg(
+        &mut self,
+        state: &mut PlanetState,
+        generator: &Generator,
+        combinator: &Combinator,
+        msg: OrchestratorToPlanet,
+    ) -> Option<PlanetToOrchestrator> {
+        match msg {
+            OrchestratorToPlanet::Sunray(sunray) => {
+                state.charge_cell(sunray);
+
+                // log test
+                /*
+                let mut bm = BTreeMap::new();
+                bm.insert("planet".into(), "hit by sunray".into());
+                let sunray_log = LogEvent::new(ActorType::Orchestrator, LogEvent::id_from_str("orchestrator"), ActorType::Planet, format!("{}", state.id()), EventType::MessageOrchestratorToPlanet, Channel::Info, bm);
+                sunray_log.emit();
+                 */
+
+                Some(SunrayAck {
+                    planet_id: state.id(),
+                })
+            }
+            OrchestratorToPlanet::Asteroid(_asteroid) => {
+                // this is actually already done in the run() method of planet
+                /*
+                let rocket = self.handle_asteroid(state, generator, combinator);
+                match rocket {
+                    None => Some(AsteroidAck {
+                        planet_id: state.id(),
+                        destroyed: true,
+                    }),
+                    Some(_rocket) => Some(AsteroidAck {
+                        planet_id: state.id(),
+                        destroyed: false,
+                    }),
+                }
+                 */
+                // I need to understand for what I could use this message, maybe for logging
+                None
+            }
+            OrchestratorToPlanet::StartPlanetAI => {
+                if self.planet_status == PlanetStatus::STOPPED {
+                    self.start(state);
+                    return Some(StartPlanetAIResult {
+                        planet_id: state.id(),
+                    });
+                }
+                None
+            }
+            OrchestratorToPlanet::StopPlanetAI => {
+                if self.planet_status == PlanetStatus::RUNNING {
+                    self.stop(state);
+                    return Some(StopPlanetAIResult {
+                        planet_id: state.id(),
+                    });
+                }
+                None
+            }
+
+            OrchestratorToPlanet::InternalStateRequest => Some(InternalStateResponse {
+                planet_id: state.id(),
+                planet_state: state.to_dummy(),
+            }),
+            OrchestratorToPlanet::IncomingExplorerRequest {
+                explorer_id,
+                new_mpsc_sender: _new_mpsc_sender,
+            } => {
+                self.explorers_on_the_planet.push(explorer_id);
+                // I think that I can even send a None here, because the actual IncomingExplorerResponse
+                // is already sent in the run() method of planet
+                None
+            }
+            OrchestratorToPlanet::OutgoingExplorerRequest { explorer_id } => {
+                self.explorers_on_the_planet.retain(|e| *e != explorer_id);
+                // same doubt as above
+                None
+            }
+            OrchestratorToPlanet::KillPlanet => {
+                todo!()
+            }
+        }
+    }
+
+    fn handle_explorer_msg(
+        &mut self,
+        state: &mut PlanetState,
+        generator: &Generator,
+        combinator: &Combinator,
+        msg: ExplorerToPlanet,
+    ) -> Option<PlanetToExplorer> {
+        // Why is the explorer_id sent in this message
+        match msg {
+            ExplorerToPlanet::SupportedResourceRequest { explorer_id } => {
+                Some(SupportedResourceResponse {
+                    resource_list: generator.all_available_recipes(),
+                })
+            }
+            ExplorerToPlanet::SupportedCombinationRequest { explorer_id } => {
+                Some(SupportedCombinationResponse {
+                    combination_list: combinator.all_available_recipes(),
+                })
+            }
+            // for now, I keep it like that but if our planet generates only Silicon the implementation can
+            // be simplified.
+            ExplorerToPlanet::GenerateResourceRequest {
+                explorer_id,
+                resource,
+            } => {
+                if let Some((cell, index)) = state.full_cell() {
+                    return match resource {
+                        BasicResourceType::Hydrogen => match generator.make_hydrogen(cell) {
+                            Ok(basic) => Some(GenerateResourceResponse {
+                                resource: Some(BasicResource::Hydrogen(basic)),
+                            }),
+                            Err(_) => Some(GenerateResourceResponse { resource: None }),
+                        },
+                        BasicResourceType::Carbon => match generator.make_carbon(cell) {
+                            Ok(basic) => Some(GenerateResourceResponse {
+                                resource: Some(BasicResource::Carbon(basic)),
+                            }),
+                            Err(_) => Some(GenerateResourceResponse { resource: None }),
+                        },
+                        BasicResourceType::Oxygen => match generator.make_oxygen(cell) {
+                            Ok(basic) => Some(GenerateResourceResponse {
+                                resource: Some(BasicResource::Oxygen(basic)),
+                            }),
+                            Err(_) => Some(GenerateResourceResponse { resource: None }),
+                        },
+                        BasicResourceType::Silicon => match generator.make_silicon(cell) {
+                            Ok(basic) => Some(GenerateResourceResponse {
+                                resource: Some(BasicResource::Silicon(basic)),
+                            }),
+                            Err(_) => Some(GenerateResourceResponse { resource: None }),
+                        },
+                    };
+                }
+                Some(GenerateResourceResponse { resource: None })
+            }
+            // we defined that on our planet you can only "create" robots, therefore all other
+            // complex resources return directly an error that the recipe is missing
+            ExplorerToPlanet::CombineResourceRequest { explorer_id, msg } => match msg {
+                ComplexResourceRequest::Robot(silicon, life) => {
+                    if let Some((cell, _index)) = state.full_cell() {
+                        return match combinator.make_robot(silicon, life, cell) {
+                            Ok(complex) => Some(CombineResourceResponse {
+                                complex_response: Ok(ComplexResource::Robot(complex)),
+                            }),
+                            Err((err, silicon, life)) => Some(CombineResourceResponse {
+                                complex_response: Err((
+                                    err,
+                                    GenericResource::BasicResources(BasicResource::Silicon(
+                                        silicon,
+                                    )),
+                                    GenericResource::ComplexResources(ComplexResource::Life(life)),
+                                )),
+                            }),
+                        };
+                    }
+                    Some(CombineResourceResponse {
+                        complex_response: Err((
+                            "There isn't any charged cell".to_string(),
+                            GenericResource::BasicResources(BasicResource::Silicon(silicon)),
+                            GenericResource::ComplexResources(ComplexResource::Life(life)),
+                        )),
+                    })
+                }
+                ComplexResourceRequest::Water(hydrogen, oxygen) => Some(CombineResourceResponse {
+                    complex_response: Err((
+                        "there isn't a recipe for water".to_string(),
+                        GenericResource::BasicResources(BasicResource::Hydrogen(hydrogen)),
+                        GenericResource::BasicResources(BasicResource::Oxygen(oxygen)),
+                    )),
+                }),
+                ComplexResourceRequest::Diamond(carbon1, carbon2) => {
+                    Some(CombineResourceResponse {
+                        complex_response: Err((
+                            "there isn't a recipe for diamond".to_string(),
+                            GenericResource::BasicResources(BasicResource::Carbon(carbon1)),
+                            GenericResource::BasicResources(BasicResource::Carbon(carbon2)),
+                        )),
+                    })
+                }
+                ComplexResourceRequest::Life(water, carbon) => Some(CombineResourceResponse {
+                    complex_response: Err((
+                        "there isn't a recipe for life".to_string(),
+                        GenericResource::ComplexResources(ComplexResource::Water(water)),
+                        GenericResource::BasicResources(BasicResource::Carbon(carbon)),
+                    )),
+                }),
+                ComplexResourceRequest::Dolphin(water, life) => Some(CombineResourceResponse {
+                    complex_response: Err((
+                        "there isn't a recipe for dolphin".to_string(),
+                        GenericResource::ComplexResources(ComplexResource::Water(water)),
+                        GenericResource::ComplexResources(ComplexResource::Life(life)),
+                    )),
+                }),
+                ComplexResourceRequest::AIPartner(robot, diamond) => {
+                    Some(CombineResourceResponse {
+                        complex_response: Err((
+                            "there isn't a recipe for AI partner".to_string(),
+                            GenericResource::ComplexResources(ComplexResource::Robot(robot)),
+                            GenericResource::ComplexResources(ComplexResource::Diamond(diamond)),
+                        )),
+                    })
+                }
+            },
+            ExplorerToPlanet::AvailableEnergyCellRequest { explorer_id } => {
+                // I think it should return the number of charged energy cells(or just call state.cells_count())
+                let available_cells = state.cells_iter().filter(|c| c.is_charged()).count();
+                Some(AvailableEnergyCellResponse {
+                    available_cells: available_cells as u32,
+                })
+            }
+        }
+    }
+
+    // I don't understand the purpose of having generator and combinator as parameters of this method
+    fn handle_asteroid(
+        &mut self,
+        state: &mut PlanetState,
+        generator: &Generator,
+        combinator: &Combinator,
+    ) -> Option<Rocket> {
+        if state.has_rocket() {
+            Some(state.take_rocket().unwrap());
+        }
+        if let Some((_cell, index)) = state.full_cell() {
+            let build_rocket_result = state.build_rocket(index);
+            return match build_rocket_result {
+                Ok(_) => Some(state.take_rocket().unwrap()),
+                Err(_) => None,
+            };
+        }
+        None
+    }
+
+    fn start(&mut self, state: &PlanetState) {
+        self.planet_status = PlanetStatus::RUNNING;
+    }
+
+    fn stop(&mut self, state: &PlanetState) {
+        self.planet_status = PlanetStatus::STOPPED;
+    }
+}
