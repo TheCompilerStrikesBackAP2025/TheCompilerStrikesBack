@@ -12,11 +12,12 @@ use common_game::protocols::messages;
 use crossbeam_channel::{Receiver, Sender};
 use std::sync::mpsc;
 
+// If we don't want it to panic, we should return a Result<Planet, String>
 pub fn create_planet(
     rx_orchestrator: Receiver<messages::OrchestratorToPlanet>,
     tx_orchestrator: Sender<messages::PlanetToOrchestrator>,
     rx_explorer: Receiver<messages::ExplorerToPlanet>,
-    planet_id: u32
+    planet_id: u32,
 ) -> Planet {
     let id = planet_id;
     let ai = AI::default();
@@ -34,6 +35,5 @@ pub fn create_planet(
         rx_explorer,
     );
 
-    // maybe doesn't need to panic
     planet_creation_result.unwrap_or_else(|err_string| panic!("{}", err_string))
 }

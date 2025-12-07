@@ -61,9 +61,7 @@ impl PlanetAI for AI {
                     planet_id: state.id(),
                 })
             }
-            OrchestratorToPlanet::Asteroid(_asteroid) => {
-                None
-            }
+            OrchestratorToPlanet::Asteroid(_asteroid) => None,
             OrchestratorToPlanet::StartPlanetAI => {
                 if self.planet_status == PlanetStatus::STOPPED {
                     self.start(state);
@@ -92,18 +90,13 @@ impl PlanetAI for AI {
                 new_mpsc_sender: _new_mpsc_sender,
             } => {
                 self.explorers_on_the_planet.push(explorer_id);
-                // I think that I can even send a None here, because the actual IncomingExplorerResponse
-                // is already sent in the run() method of planet
                 None
             }
             OrchestratorToPlanet::OutgoingExplorerRequest { explorer_id } => {
                 self.explorers_on_the_planet.retain(|e| *e != explorer_id);
-                // same doubt as above
                 None
             }
-            OrchestratorToPlanet::KillPlanet => {
-                todo!()
-            }
+            OrchestratorToPlanet::KillPlanet => None,
         }
     }
 
@@ -126,8 +119,6 @@ impl PlanetAI for AI {
                     combination_list: combinator.all_available_recipes(),
                 })
             }
-            // for now, I keep it like that but if our planet generates only Silicon the implementation can
-            // be simplified.
             ExplorerToPlanet::GenerateResourceRequest {
                 explorer_id,
                 resource,
@@ -162,8 +153,6 @@ impl PlanetAI for AI {
                 }
                 Some(GenerateResourceResponse { resource: None })
             }
-            // we defined that on our planet you can only "create" robots, therefore all other
-            // complex resources return directly an error that the recipe is missing
             ExplorerToPlanet::CombineResourceRequest { explorer_id, msg } => match msg {
                 ComplexResourceRequest::Robot(silicon, life) => {
                     if let Some((cell, _index)) = state.full_cell() {
@@ -206,9 +195,7 @@ impl PlanetAI for AI {
                             Err((err, carbon1, carbon2)) => Some(CombineResourceResponse {
                                 complex_response: Err((
                                     err,
-                                    GenericResource::BasicResources(BasicResource::Carbon(
-                                        carbon1,
-                                    )),
+                                    GenericResource::BasicResources(BasicResource::Carbon(carbon1)),
                                     GenericResource::BasicResources(BasicResource::Carbon(carbon2)),
                                 )),
                             }),
@@ -245,8 +232,12 @@ impl PlanetAI for AI {
                             Err((err, robot, diamond)) => Some(CombineResourceResponse {
                                 complex_response: Err((
                                     err,
-                                    GenericResource::ComplexResources(ComplexResource::Robot(robot)),
-                                    GenericResource::ComplexResources(ComplexResource::Diamond(diamond)),
+                                    GenericResource::ComplexResources(ComplexResource::Robot(
+                                        robot,
+                                    )),
+                                    GenericResource::ComplexResources(ComplexResource::Diamond(
+                                        diamond,
+                                    )),
                                 )),
                             }),
                         };
@@ -261,7 +252,6 @@ impl PlanetAI for AI {
                 }
             },
             ExplorerToPlanet::AvailableEnergyCellRequest { explorer_id } => {
-                // I think it should return the number of charged energy cells(or just call state.cells_count())
                 let available_cells = state.cells_iter().filter(|c| c.is_charged()).count();
                 Some(AvailableEnergyCellResponse {
                     available_cells: available_cells as u32,
@@ -270,7 +260,6 @@ impl PlanetAI for AI {
         }
     }
 
-    // I don't understand the purpose of having generator and combinator as parameters of this method
     fn handle_asteroid(
         &mut self,
         state: &mut PlanetState,
