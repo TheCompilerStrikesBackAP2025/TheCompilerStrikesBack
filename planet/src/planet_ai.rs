@@ -57,35 +57,11 @@ impl PlanetAI for AI {
         match msg {
             OrchestratorToPlanet::Sunray(sunray) => {
                 state.charge_cell(sunray);
-
-                // log test
-                /*
-                let mut bm = BTreeMap::new();
-                bm.insert("planet".into(), "hit by sunray".into());
-                let sunray_log = LogEvent::new(ActorType::Orchestrator, LogEvent::id_from_str("orchestrator"), ActorType::Planet, format!("{}", state.id()), EventType::MessageOrchestratorToPlanet, Channel::Info, bm);
-                sunray_log.emit();
-                 */
-
                 Some(SunrayAck {
                     planet_id: state.id(),
                 })
             }
             OrchestratorToPlanet::Asteroid(_asteroid) => {
-                // this is actually already done in the run() method of planet
-                /*
-                let rocket = self.handle_asteroid(state, generator, combinator);
-                match rocket {
-                    None => Some(AsteroidAck {
-                        planet_id: state.id(),
-                        destroyed: true,
-                    }),
-                    Some(_rocket) => Some(AsteroidAck {
-                        planet_id: state.id(),
-                        destroyed: false,
-                    }),
-                }
-                 */
-                // I need to understand for what I could use this message, maybe for logging
                 None
             }
             OrchestratorToPlanet::StartPlanetAI => {

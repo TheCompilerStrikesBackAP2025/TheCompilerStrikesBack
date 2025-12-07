@@ -1,3 +1,5 @@
 /target
 .cargo
 .idea
+planet/.idea
+project/.idea
