@@ -2,7 +2,7 @@
 PLANET CONFIGURATION:
     - planet type: C
     - base resource: Silicon
-    - complex resource: Robot
+    - complex resource: Robot, Diamond, AI partner
  */
 
 use crate::planet_ai::AI;
@@ -22,7 +22,11 @@ pub fn create_planet(
     let id = planet_id;
     let ai = AI::default();
     let gen_rules = vec![BasicResourceType::Silicon];
-    let comb_rules = vec![ComplexResourceType::Robot];
+    let comb_rules = vec![
+        ComplexResourceType::Robot,
+        ComplexResourceType::AIPartner,
+        ComplexResourceType::Diamond,
+    ];
 
     // Construct the planet and return it
     let planet_creation_result = Planet::new(

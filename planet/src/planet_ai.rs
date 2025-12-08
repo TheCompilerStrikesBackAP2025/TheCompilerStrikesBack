@@ -1,47 +1,26 @@
-use common_game::components::planet::PlanetType::B;
 use common_game::components::planet::{PlanetAI, PlanetState};
 use common_game::components::resource::{
     BasicResource, BasicResourceType, Carbon, Combinator, ComplexResource, ComplexResourceRequest,
     Generator, GenericResource, Hydrogen, Life, Robot, Silicon,
 };
 use common_game::components::rocket::Rocket;
-use common_game::components::sunray::Sunray;
-use common_game::logging::{ActorType, Channel, EventType, LogEvent};
 use common_game::protocols::messages::PlanetToExplorer::{
     AvailableEnergyCellResponse, CombineResourceResponse, GenerateResourceResponse,
     SupportedCombinationResponse, SupportedResourceResponse,
 };
-use common_game::protocols::messages::PlanetToOrchestrator::{AsteroidAck, InternalStateResponse, KillPlanetResult, StartPlanetAIResult, StopPlanetAIResult, SunrayAck};
+use common_game::protocols::messages::PlanetToOrchestrator::{
+    AsteroidAck, InternalStateResponse, KillPlanetResult, StartPlanetAIResult, StopPlanetAIResult,
+    SunrayAck,
+};
 use common_game::protocols::messages::{
     ExplorerToPlanet, OrchestratorToPlanet, PlanetToExplorer, PlanetToOrchestrator,
 };
-use std::cmp::PartialEq;
-use std::collections::BTreeMap;
-use std::os::linux::raw::stat;
 
-#[derive(PartialEq)]
-enum PlanetStatus {
-    STOPPED,
-    RUNNING,
-}
-
-pub struct AI {
-    planet_status: PlanetStatus,
-    explorers_on_the_planet: Vec<u32>,
-}
+pub struct AI {}
 
 impl Default for AI {
     fn default() -> Self {
-        AI::new()
-    }
-}
-
-impl AI {
-    fn new() -> Self {
-        Self {
-            planet_status: PlanetStatus::STOPPED,
-            explorers_on_the_planet: Vec::new(),
-        }
+        AI {}
     }
 }
 
@@ -60,42 +39,11 @@ impl PlanetAI for AI {
                     planet_id: state.id(),
                 })
             }
-            OrchestratorToPlanet::Asteroid(_asteroid) => None,
-            OrchestratorToPlanet::StartPlanetAI => {
-                if self.planet_status == PlanetStatus::STOPPED {
-                    self.start(state);
-                    return Some(StartPlanetAIResult {
-                        planet_id: state.id(),
-                    });
-                }
-                None
-            }
-            OrchestratorToPlanet::StopPlanetAI => {
-                if self.planet_status == PlanetStatus::RUNNING {
-                    self.stop(state);
-                    return Some(StopPlanetAIResult {
-                        planet_id: state.id(),
-                    });
-                }
-                None
-            }
-
             OrchestratorToPlanet::InternalStateRequest => Some(InternalStateResponse {
                 planet_id: state.id(),
                 planet_state: state.to_dummy(),
             }),
-            OrchestratorToPlanet::IncomingExplorerRequest {
-                explorer_id,
-                new_mpsc_sender: _new_mpsc_sender,
-            } => {
-                self.explorers_on_the_planet.push(explorer_id);
-                None
-            }
-            OrchestratorToPlanet::OutgoingExplorerRequest { explorer_id } => {
-                self.explorers_on_the_planet.retain(|e| *e != explorer_id);
-                None
-            }
-            OrchestratorToPlanet::KillPlanet => None,
+            _ => None,
         }
     }
 
@@ -278,11 +226,7 @@ impl PlanetAI for AI {
         None
     }
 
-    fn start(&mut self, state: &PlanetState) {
-        self.planet_status = PlanetStatus::RUNNING;
-    }
+    fn start(&mut self, state: &PlanetState) {}
 
-    fn stop(&mut self, state: &PlanetState) {
-        self.planet_status = PlanetStatus::STOPPED;
-    }
+    fn stop(&mut self, state: &PlanetState) {}
 }

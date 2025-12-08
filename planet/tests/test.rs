@@ -1,7 +1,9 @@
 use common_game::components::asteroid::Asteroid;
 use common_game::components::planet::Planet;
 use common_game::components::sunray::Sunray;
-use common_game::protocols::messages::{ExplorerToPlanet, OrchestratorToExplorer, OrchestratorToPlanet};
+use common_game::protocols::messages::{
+    ExplorerToPlanet, OrchestratorToExplorer, OrchestratorToPlanet,
+};
 use crossbeam_channel::bounded;
 use planet::planet::*;
 use std::thread;
@@ -45,7 +47,9 @@ fn test_planet_run_threaded() {
     // Receive planet response
     if let Ok(msg) = rx_orch.recv() {
         match msg {
-            common_game::protocols::messages::PlanetToOrchestrator::StartPlanetAIResult { planet_id } => {
+            common_game::protocols::messages::PlanetToOrchestrator::StartPlanetAIResult {
+                planet_id,
+            } => {
                 assert_eq!(planet_id, pln_id);
             }
             _ => panic!("Unattended message"),
@@ -78,7 +82,9 @@ fn test_planet_orchestrator_msg() {
     // Receive planet response
     if let Ok(msg) = rx_orch.recv() {
         match msg {
-            common_game::protocols::messages::PlanetToOrchestrator::StartPlanetAIResult { planet_id } => {
+            common_game::protocols::messages::PlanetToOrchestrator::StartPlanetAIResult {
+                planet_id,
+            } => {
                 assert_eq!(planet_id, pln_id);
             }
             _ => panic!("Unattended message"),
@@ -88,7 +94,9 @@ fn test_planet_orchestrator_msg() {
     }
 
     // Send sunray
-    tx_orch.send(OrchestratorToPlanet::Sunray(Sunray::default())).unwrap();
+    tx_orch
+        .send(OrchestratorToPlanet::Sunray(Sunray::default()))
+        .unwrap();
     // Receive planet response
     if let Ok(msg) = rx_orch.recv() {
         match msg {
@@ -102,10 +110,15 @@ fn test_planet_orchestrator_msg() {
     }
 
     // Send internal state
-    tx_orch.send(OrchestratorToPlanet::InternalStateRequest).unwrap();
+    tx_orch
+        .send(OrchestratorToPlanet::InternalStateRequest)
+        .unwrap();
     if let Ok(msg) = rx_orch.recv() {
         match msg {
-            common_game::protocols::messages::PlanetToOrchestrator::InternalStateResponse { planet_id, planet_state } => {
+            common_game::protocols::messages::PlanetToOrchestrator::InternalStateResponse {
+                planet_id,
+                planet_state,
+            } => {
                 assert_eq!(planet_id, pln_id);
                 assert_eq!(planet_state.has_rocket, false);
                 assert_eq!(planet_state.charged_cells_count, 1);
@@ -117,14 +130,19 @@ fn test_planet_orchestrator_msg() {
     }
 
     // Send asteroid
-    tx_orch.send(OrchestratorToPlanet::Asteroid(Asteroid::default())).unwrap();
+    tx_orch
+        .send(OrchestratorToPlanet::Asteroid(Asteroid::default()))
+        .unwrap();
     if let Ok(msg) = rx_orch.recv() {
         match msg {
-            common_game::protocols::messages::PlanetToOrchestrator::AsteroidAck { planet_id, rocket } => {
+            common_game::protocols::messages::PlanetToOrchestrator::AsteroidAck {
+                planet_id,
+                rocket,
+            } => {
                 assert_eq!(planet_id, pln_id);
                 match rocket {
                     Some(_) => assert!(true),
-                    None => panic!("No rocket returned from asteroid message")
+                    None => panic!("No rocket returned from asteroid message"),
                 }
             }
             _ => panic!("Unattended message"),
@@ -137,7 +155,9 @@ fn test_planet_orchestrator_msg() {
     tx_orch.send(OrchestratorToPlanet::StopPlanetAI).unwrap();
     if let Ok(msg) = rx_orch.recv() {
         match msg {
-            common_game::protocols::messages::PlanetToOrchestrator::StopPlanetAIResult { planet_id } => {
+            common_game::protocols::messages::PlanetToOrchestrator::StopPlanetAIResult {
+                planet_id,
+            } => {
                 assert_eq!(planet_id, pln_id);
             }
             _ => panic!("Unattended message"),
@@ -169,7 +189,9 @@ fn test_planet_destroy_planet() {
     tx_orch.send(OrchestratorToPlanet::StartPlanetAI).unwrap();
     if let Ok(msg) = rx_orch.recv() {
         match msg {
-            common_game::protocols::messages::PlanetToOrchestrator::StartPlanetAIResult { planet_id } => {
+            common_game::protocols::messages::PlanetToOrchestrator::StartPlanetAIResult {
+                planet_id,
+            } => {
                 assert_eq!(planet_id, pln_id);
             }
             _ => panic!("Unattended message"),
@@ -179,10 +201,15 @@ fn test_planet_destroy_planet() {
     }
 
     // Send asteroid
-    tx_orch.send(OrchestratorToPlanet::Asteroid(Asteroid::default())).unwrap();
+    tx_orch
+        .send(OrchestratorToPlanet::Asteroid(Asteroid::default()))
+        .unwrap();
     if let Ok(msg) = rx_orch.recv() {
         match msg {
-            common_game::protocols::messages::PlanetToOrchestrator::AsteroidAck { planet_id, rocket } => {
+            common_game::protocols::messages::PlanetToOrchestrator::AsteroidAck {
+                planet_id,
+                rocket,
+            } => {
                 assert_eq!(planet_id, pln_id);
                 match rocket {
                     Some(_) => panic!("Rocket returned from asteroid when none was expected"),
