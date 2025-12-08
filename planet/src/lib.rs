@@ -1,2 +1,2 @@
-mod planet;
-mod planet_ai;
+pub mod planet;
+pub mod planet_ai;

@@ -11,14 +11,13 @@ use common_game::protocols::messages::PlanetToExplorer::{
     AvailableEnergyCellResponse, CombineResourceResponse, GenerateResourceResponse,
     SupportedCombinationResponse, SupportedResourceResponse,
 };
-use common_game::protocols::messages::PlanetToOrchestrator::{
-    AsteroidAck, InternalStateResponse, StartPlanetAIResult, StopPlanetAIResult, SunrayAck,
-};
+use common_game::protocols::messages::PlanetToOrchestrator::{AsteroidAck, InternalStateResponse, KillPlanetResult, StartPlanetAIResult, StopPlanetAIResult, SunrayAck};
 use common_game::protocols::messages::{
     ExplorerToPlanet, OrchestratorToPlanet, PlanetToExplorer, PlanetToOrchestrator,
 };
 use std::cmp::PartialEq;
 use std::collections::BTreeMap;
+use std::os::linux::raw::stat;
 
 #[derive(PartialEq)]
 enum PlanetStatus {
