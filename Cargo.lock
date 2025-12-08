@@ -3,6 +3,14 @@
 version = 4
 
 [[package]]
+name = "TheCompilerStrikesBack"
+version = "0.1.0"
+dependencies = [
+ "common-game",
+ "crossbeam-channel",
+]
+
+[[package]]
 name = "common-game"
 version = "0.1.0"
 source = "git+ssh://git@github.com/unitn-ap-2025/common.git#5b5c697a7b64b26b24134e5e91d34b9da279432a"
@@ -45,14 +53,6 @@ name = "paste"
 version = "1.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a"
-
-[[package]]
-name = "planet"
-version = "0.1.0"
-dependencies = [
- "common-game",
- "crossbeam-channel",
-]
 
 [[package]]
 name = "project"

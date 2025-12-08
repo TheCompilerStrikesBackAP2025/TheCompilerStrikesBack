@@ -199,7 +199,7 @@ impl PlanetAI for AI {
                 }
             },
             ExplorerToPlanet::AvailableEnergyCellRequest { explorer_id } => {
-                let available_cells = state.cells_iter().filter(|c| c.is_charged()).count();
+                let available_cells = state.cells_count();
                 Some(AvailableEnergyCellResponse {
                     available_cells: available_cells as u32,
                 })

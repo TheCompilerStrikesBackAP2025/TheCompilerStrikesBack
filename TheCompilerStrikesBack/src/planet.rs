@@ -1,6 +1,6 @@
 /*
 PLANET CONFIGURATION:
-    - planet type: C
+    - TheCompilerStrikesBack type: C
     - base resource: Silicon
     - complex resource: Robot, Diamond, AI partner
  */
@@ -12,7 +12,7 @@ use common_game::protocols::messages;
 use crossbeam_channel::{Receiver, Sender};
 use std::sync::mpsc;
 
-// If we don't want it to panic, we should return a Result<Planet, String>
+// ISSUE 100 = the following method should become part of a trait
 pub fn create_planet(
     rx_orchestrator: Receiver<messages::OrchestratorToPlanet>,
     tx_orchestrator: Sender<messages::PlanetToOrchestrator>,
@@ -28,7 +28,7 @@ pub fn create_planet(
         ComplexResourceType::Diamond,
     ];
 
-    // Construct the planet and return it
+    // Construct the TheCompilerStrikesBack and return it
     let planet_creation_result = Planet::new(
         id,
         PlanetType::C,
@@ -39,5 +39,6 @@ pub fn create_planet(
         rx_explorer,
     );
 
-    planet_creation_result.unwrap_or_else(|err_string| panic!("{}", err_string))
+    // ISSUE 98 = no room, inside of this constructor, for errors, just unwrapping
+    planet_creation_result.unwrap()
 }
