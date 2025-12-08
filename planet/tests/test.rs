@@ -152,7 +152,7 @@ fn test_planet_orchestrator_msg() {
 }
 
 #[test]
-fn test_planet_destroy_planet() { // Fallisce e non so perchè, non dovrebbe
+fn test_planet_destroy_planet() {
     let (tx_orch, rx_planet) = bounded(10);
     let (tx_planet, rx_orch) = bounded(10);
     let (_tx_explorer, rx_explorer) = bounded(10);
