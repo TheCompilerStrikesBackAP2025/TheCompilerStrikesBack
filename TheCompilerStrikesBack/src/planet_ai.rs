@@ -4,6 +4,7 @@ use common_game::components::resource::{
     Generator, GenericResource, Hydrogen, Life, Robot, Silicon,
 };
 use common_game::components::rocket::Rocket;
+use common_game::logging::{ActorType, Channel, EventType, LogEvent};
 use common_game::protocols::messages::PlanetToExplorer::{
     AvailableEnergyCellResponse, CombineResourceResponse, GenerateResourceResponse,
     SupportedCombinationResponse, SupportedResourceResponse,
@@ -35,6 +36,15 @@ impl PlanetAI for AI {
         match msg {
             OrchestratorToPlanet::Sunray(sunray) => {
                 state.charge_cell(sunray);
+                if(state.to_dummy().has_rocket == false) {
+                    match state.full_cell() {
+                        None => {}
+                        Some((_cell, i)) => {
+                            // assert!(cell.is_charged());
+                            let _ = state.build_rocket(i);
+                        }
+                    }
+                }
                 Some(SunrayAck {
                     planet_id: state.id(),
                 })
@@ -199,7 +209,7 @@ impl PlanetAI for AI {
                 }
             },
             ExplorerToPlanet::AvailableEnergyCellRequest { explorer_id } => {
-                let available_cells = state.cells_count();
+                let available_cells = state.to_dummy().charged_cells_count;
                 Some(AvailableEnergyCellResponse {
                     available_cells: available_cells as u32,
                 })
@@ -214,7 +224,7 @@ impl PlanetAI for AI {
         combinator: &Combinator,
     ) -> Option<Rocket> {
         if state.has_rocket() {
-            Some(state.take_rocket().unwrap());
+            return Some(state.take_rocket()).unwrap()
         }
         if let Some((_cell, index)) = state.full_cell() {
             let build_rocket_result = state.build_rocket(index);
@@ -226,7 +236,9 @@ impl PlanetAI for AI {
         None
     }
 
-    fn start(&mut self, state: &PlanetState) {}
+    fn start(&mut self, state: &PlanetState) {
+        LogEvent::new(ActorType::Planet, state.id(), ActorType::Orchestrator, 0.to_string(), EventType::MessagePlanetToOrchestrator, Channel::Info, Default::default()).emit();
+    }
 
     fn stop(&mut self, state: &PlanetState) {}
 }

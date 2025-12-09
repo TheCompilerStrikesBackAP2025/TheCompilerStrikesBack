@@ -9,7 +9,22 @@ use common_game::protocols::messages::{
 use crossbeam_channel::bounded;
 use TheCompilerStrikesBack::planet::*;
 use std::collections::HashSet;
+use std::sync::Once;
 use std::thread;
+
+
+pub fn init_logger() {
+    static INIT: std::sync::Once = std::sync::Once::new();
+
+    INIT.call_once(|| {
+        env_logger::Builder::from_default_env()
+            .is_test(true)
+            .filter_level(log::LevelFilter::Info) // ensure INFO logs appear
+            .try_init()
+            .ok();
+    });
+}
+
 
 fn setup_planet_for_tests() -> Planet {
     let (_tx_orch, rx_planet) = bounded(10);
@@ -34,6 +49,8 @@ fn test_create_planet_success() {
 /// test for orchestrator-like TheCompilerStrikesBack creation + basic start and kill messages
 #[test]
 fn test_planet_run_threaded() {
+    init_logger();
+
     let (tx_orch, rx_planet) = bounded(10);
     let (tx_planet, rx_orch) = bounded(10);
     let (_tx_explorer, rx_explorer) = bounded(10);
@@ -136,8 +153,8 @@ fn test_planet_orchestrator_msg() {
                 planet_state,
             } => {
                 assert_eq!(planet_id, pln_id);
-                assert_eq!(planet_state.has_rocket, false);
-                assert_eq!(planet_state.charged_cells_count, 1); //previously charged by sunray
+                assert_eq!(planet_state.has_rocket, true);          //planet gives priority to rocket construction
+                assert_eq!(planet_state.charged_cells_count, 0);
             }
             _ => panic!("Unattended message"),
         }
@@ -169,7 +186,7 @@ fn test_planet_orchestrator_msg() {
 
 //test for TheCompilerStrikesBack destruction based on asteroidAck
 #[test]
-fn test_planet_destroy_planet() {
+fn test_planet_destroyed_asteroid() {
     let (tx_orch, rx_planet) = bounded(10);
     let (tx_planet, rx_orch) = bounded(10);
     let (_tx_explorer, rx_explorer) = bounded(10);
@@ -234,6 +251,99 @@ fn test_planet_destroy_planet() {
     handle.join().unwrap();
 }
 
+//test for TheCompilerStrikesBack destruction based on asteroidAck
+#[test]
+fn test_planet_survives_asteroid() {
+    let (tx_orch, rx_planet) = bounded(10);
+    let (tx_planet, rx_orch) = bounded(10);
+    let (_tx_explorer, rx_explorer) = bounded(10);
+    let pln_id = 1;
+
+    let mut planet = create_planet(rx_planet, tx_planet, rx_explorer, pln_id);
+
+    // We call the run method in a new thread
+    let handle = thread::spawn(move || {
+        planet.run().unwrap();
+    });
+
+    // Send start TheCompilerStrikesBack AI
+    tx_orch.send(OrchestratorToPlanet::StartPlanetAI).unwrap();
+    if let Ok(msg) = rx_orch.recv() {
+        match msg {
+            common_game::protocols::messages::PlanetToOrchestrator::StartPlanetAIResult {
+                planet_id,
+            } => {
+                assert_eq!(planet_id, pln_id);
+            }
+            _ => panic!("Unattended message"),
+        }
+    } else {
+        panic!("No responses");
+    }
+
+    // Send sunray
+    tx_orch
+        .send(OrchestratorToPlanet::Sunray(Sunray::default()))
+        .unwrap();
+    if let Ok(msg) = rx_orch.recv() {
+        match msg {
+            common_game::protocols::messages::PlanetToOrchestrator::SunrayAck { planet_id } => {
+                assert_eq!(planet_id, pln_id);
+            }
+            _ => panic!("Unattended message"),
+        }
+    } else {
+        panic!("No responses");
+    }
+
+
+    // Send asteroid
+    tx_orch
+        .send(OrchestratorToPlanet::Asteroid(Asteroid::default()))
+        .unwrap();
+    if let Ok(msg) = rx_orch.recv() {
+        match msg {
+            PlanetToOrchestrator::AsteroidAck {
+                planet_id,
+                rocket,
+            } => {
+                assert_eq!(planet_id, pln_id);
+                match rocket {
+                    Some(_) => {} //expected behavior, planet is safe
+                    None => {
+                        panic!("Rocket was not sent!")
+                    }
+                }
+            }
+            _ => panic!("Unattended message"),
+        }
+    } else {
+        panic!("No responses");
+    }
+
+    // Kill the TheCompilerStrikesBack
+    tx_orch.send(OrchestratorToPlanet::KillPlanet).unwrap();
+    match rx_orch.recv() {
+        Ok(PlanetToOrchestrator::KillPlanetResult { planet_id }) => {
+            assert_eq!(
+                planet_id, pln_id,
+                "Planet sent KillPlanetResult with wrong ID"
+            );
+        }
+        Ok(other) => {
+            panic!("Test failed: expected KillPlanetResult");
+        }
+        Err(e) => {
+            panic!(
+                "Test failed: TheCompilerStrikesBack did not respond before exiting: {:?}",
+                e
+            );
+        }
+    }
+    handle.join().unwrap();
+}
+
+
 //test for explorer messages
 #[test]
 fn test_planet_explorer() {
@@ -273,6 +383,17 @@ fn test_planet_explorer() {
         }
     }
 
+    tx_orch
+        .send(OrchestratorToPlanet::Sunray(Sunray::default()))
+        .unwrap();
+    if let Ok(msg) = rx_orch.recv() {
+        match msg {
+            common_game::protocols::messages::PlanetToOrchestrator::SunrayAck { planet_id } => {}
+            _ => panic!("Unattended message"),
+        }
+    }
+
+
     // explorer arrives on TheCompilerStrikesBack:
     let explorer_id = 101;
     let (expl_tx_local, expl_rx_local) = bounded::<PlanetToExplorer>(10);
@@ -283,7 +404,6 @@ fn test_planet_explorer() {
             new_mpsc_sender: expl_tx_local,
         })
         .unwrap();
-
     // 6. Verify Ack from Planet
     match rx_orch.recv() {
         Ok(PlanetToOrchestrator::IncomingExplorerResponse { planet_id, res }) => {
