@@ -211,13 +211,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "project"
-version = "0.1.0"
-dependencies = [
- "common-game",
-]
-
-[[package]]
 name = "quote"
 version = "1.0.42"
 source = "registry+https://github.com/rust-lang/crates.io-index"
