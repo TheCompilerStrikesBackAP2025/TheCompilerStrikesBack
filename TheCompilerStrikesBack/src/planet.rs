@@ -10,7 +10,6 @@ use common_game::components::planet::{Planet, PlanetType};
 use common_game::components::resource::{BasicResourceType, ComplexResourceType};
 use common_game::protocols::messages;
 use crossbeam_channel::{Receiver, Sender};
-use std::sync::mpsc;
 
 // ISSUE 100 = the following method should become part of a trait
 pub fn create_planet(
