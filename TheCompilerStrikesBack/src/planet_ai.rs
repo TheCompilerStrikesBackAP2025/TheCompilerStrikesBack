@@ -5,11 +5,8 @@ use common_game::components::resource::{
 };
 use common_game::components::rocket::Rocket;
 use common_game::components::sunray::Sunray;
-use common_game::protocols::messages::PlanetToExplorer::{
-    AvailableEnergyCellResponse, CombineResourceResponse, GenerateResourceResponse,
-    SupportedCombinationResponse, SupportedResourceResponse,
-};
-use common_game::protocols::messages::{ExplorerToPlanet, PlanetToExplorer};
+use common_game::protocols::planet_explorer::{ExplorerToPlanet, PlanetToExplorer};
+use common_game::protocols::planet_explorer::PlanetToExplorer::{AvailableEnergyCellResponse, CombineResourceResponse, GenerateResourceResponse, SupportedCombinationResponse, SupportedResourceResponse};
 
 pub struct AI {}
 
