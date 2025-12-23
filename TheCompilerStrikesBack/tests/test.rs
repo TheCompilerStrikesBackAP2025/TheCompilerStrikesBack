@@ -1,3 +1,4 @@
+use TheCompilerStrikesBack::planet::*;
 use common_game::components::asteroid::Asteroid;
 use common_game::components::planet::Planet;
 use common_game::components::resource::ComplexResourceType::{AIPartner, Diamond, Robot};
@@ -7,11 +8,9 @@ use common_game::protocols::messages::{
     ExplorerToPlanet, OrchestratorToPlanet, PlanetToExplorer, PlanetToOrchestrator,
 };
 use crossbeam_channel::bounded;
-use TheCompilerStrikesBack::planet::*;
 use std::collections::HashSet;
 use std::sync::Once;
 use std::thread;
-
 
 pub fn init_logger() {
     static INIT: std::sync::Once = std::sync::Once::new();
@@ -24,7 +23,6 @@ pub fn init_logger() {
             .ok();
     });
 }
-
 
 fn setup_planet_for_tests() -> Planet {
     let (_tx_orch, rx_planet) = bounded(10);
@@ -153,7 +151,7 @@ fn test_planet_orchestrator_msg() {
                 planet_state,
             } => {
                 assert_eq!(planet_id, pln_id);
-                assert_eq!(planet_state.has_rocket, true);          //planet gives priority to rocket construction
+                assert_eq!(planet_state.has_rocket, true); //planet gives priority to rocket construction
                 assert_eq!(planet_state.charged_cells_count, 0);
             }
             _ => panic!("Unattended message"),
@@ -296,17 +294,13 @@ fn test_planet_survives_asteroid() {
         panic!("No responses");
     }
 
-
     // Send asteroid
     tx_orch
         .send(OrchestratorToPlanet::Asteroid(Asteroid::default()))
         .unwrap();
     if let Ok(msg) = rx_orch.recv() {
         match msg {
-            PlanetToOrchestrator::AsteroidAck {
-                planet_id,
-                rocket,
-            } => {
+            PlanetToOrchestrator::AsteroidAck { planet_id, rocket } => {
                 assert_eq!(planet_id, pln_id);
                 match rocket {
                     Some(_) => {} //expected behavior, planet is safe
@@ -342,7 +336,6 @@ fn test_planet_survives_asteroid() {
     }
     handle.join().unwrap();
 }
-
 
 //test for explorer messages
 #[test]
@@ -392,7 +385,6 @@ fn test_planet_explorer() {
             _ => panic!("Unattended message"),
         }
     }
-
 
     // explorer arrives on TheCompilerStrikesBack:
     let explorer_id = 101;
