@@ -1,0 +1,1 @@
+Planet implementation developed by the TheCompilerStrikesBack group for the Advanced Programming course (2025)

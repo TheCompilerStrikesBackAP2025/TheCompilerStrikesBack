@@ -1,10 +1,15 @@
 [package]
-name = "TheCompilerStrikesBack"
+name = "the-compiler-strikes-back"
 version = "0.1.0"
 edition = "2024"
+description = "Planet implementation developed by the TheCompilerStrikesBack group for the Advanced Programming course (2025)"
+license = "MIT"
+repository = "https://github.com/TheCompilerStrikesBackAP2025/TheCompilerStrikesBack"
+exclude = [
+    "Cargo.lock"
+]
 
 [dependencies]
-#common-game = { git = "ssh://git@github.com/unitn-ap-2025/common.git", branch="beta" }
 common-game = "2.0.0"
 crossbeam-channel = "0.5.15"
 env_logger = "0.11.8"

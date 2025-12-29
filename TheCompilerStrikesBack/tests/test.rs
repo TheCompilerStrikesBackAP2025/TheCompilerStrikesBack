@@ -1,4 +1,3 @@
-use TheCompilerStrikesBack::planet::*;
 use common_game::components::asteroid::Asteroid;
 use common_game::components::planet::Planet;
 use common_game::components::resource::ComplexResourceType::{AIPartner, Diamond, Robot};
@@ -10,6 +9,7 @@ use std::sync::Once;
 use std::thread;
 use common_game::protocols::orchestrator_planet::{OrchestratorToPlanet, PlanetToOrchestrator};
 use common_game::protocols::planet_explorer::{ExplorerToPlanet, PlanetToExplorer};
+use the_compiler_strikes_back::planet::*;
 
 pub fn init_logger() {
     static INIT: std::sync::Once = std::sync::Once::new();

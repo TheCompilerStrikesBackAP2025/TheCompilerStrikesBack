@@ -12,7 +12,6 @@ use common_game::protocols::orchestrator_planet::{OrchestratorToPlanet, PlanetTo
 use common_game::protocols::planet_explorer::ExplorerToPlanet;
 use crossbeam_channel::{Receiver, Sender};
 
-// ISSUE 100 = the following method should become part of a trait
 pub fn create_planet(
     rx_orchestrator: Receiver<OrchestratorToPlanet>,
     tx_orchestrator: Sender<PlanetToOrchestrator>,
@@ -39,6 +38,6 @@ pub fn create_planet(
         rx_explorer,
     );
 
-    // ISSUE 98 = no room, inside of this constructor, for errors, just unwrapping
+    // ISSUE 98 = no room, inside this constructor, for errors, just unwrapping
     planet_creation_result.unwrap()
 }

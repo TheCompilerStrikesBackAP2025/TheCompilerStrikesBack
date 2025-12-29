@@ -3,16 +3,6 @@
 version = 4
 
 [[package]]
-name = "TheCompilerStrikesBack"
-version = "0.1.0"
-dependencies = [
- "common-game",
- "crossbeam-channel",
- "env_logger",
- "log",
-]
-
-[[package]]
 name = "aho-corasick"
 version = "1.1.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -317,6 +307,16 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "the-compiler-strikes-back"
+version = "0.1.0"
+dependencies = [
+ "common-game",
+ "crossbeam-channel",
+ "env_logger",
+ "log",
 ]
 
 [[package]]
