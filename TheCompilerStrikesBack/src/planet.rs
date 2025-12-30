@@ -12,7 +12,6 @@ use common_game::protocols::orchestrator_planet::{OrchestratorToPlanet, PlanetTo
 use common_game::protocols::planet_explorer::ExplorerToPlanet;
 use crossbeam_channel::{Receiver, Sender};
 
-// ISSUE 100 = the following method should become part of a trait
 pub fn create_planet(
     rx_orchestrator: Receiver<OrchestratorToPlanet>,
     tx_orchestrator: Sender<PlanetToOrchestrator>,
@@ -20,7 +19,7 @@ pub fn create_planet(
     planet_id: u32,
 ) -> Planet {
     let id = planet_id;
-    let ai = AI::default();
+    let ai = AI::new(id);
     let gen_rules = vec![BasicResourceType::Silicon];
     let comb_rules = vec![
         ComplexResourceType::Robot,
@@ -39,6 +38,5 @@ pub fn create_planet(
         rx_explorer,
     );
 
-    // ISSUE 98 = no room, inside of this constructor, for errors, just unwrapping
     planet_creation_result.unwrap()
 }

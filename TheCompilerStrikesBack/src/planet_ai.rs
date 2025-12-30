@@ -5,14 +5,23 @@ use common_game::components::resource::{
 };
 use common_game::components::rocket::Rocket;
 use common_game::components::sunray::Sunray;
+use common_game::logging::ActorType::Planet;
+use common_game::logging::Participant;
+use common_game::protocols::planet_explorer::PlanetToExplorer::{
+    AvailableEnergyCellResponse, CombineResourceResponse, GenerateResourceResponse,
+    SupportedCombinationResponse, SupportedResourceResponse,
+};
 use common_game::protocols::planet_explorer::{ExplorerToPlanet, PlanetToExplorer};
-use common_game::protocols::planet_explorer::PlanetToExplorer::{AvailableEnergyCellResponse, CombineResourceResponse, GenerateResourceResponse, SupportedCombinationResponse, SupportedResourceResponse};
 
-pub struct AI {}
+pub struct AI {
+    pub(crate) log_part: Participant,
+}
 
-impl Default for AI {
-    fn default() -> Self {
-        AI {}
+impl AI {
+    pub fn new(id: u32) -> Self {
+        Self {
+            log_part: Participant::new(Planet, id),
+        }
     }
 }
 
@@ -27,12 +36,17 @@ impl PlanetAI for AI {
         _combinator: &Combinator,
         sunray: Sunray,
     ) {
-        state.charge_cell(sunray);
+        match state.charge_cell(sunray) {
+            None => self.log_charge_cell("charged".to_string()),
+            Some(_) => self.log_charge_cell("already charged".to_string()),
+        }
+
         if state.to_dummy().has_rocket == false {
             match state.full_cell() {
                 None => {}
                 Some((_cell, i)) => {
                     let _ = state.build_rocket(i);
+                    self.log_build_rocket();
                 }
             }
         }
@@ -52,6 +66,7 @@ impl PlanetAI for AI {
         }
         if let Some((_cell, index)) = state.full_cell() {
             let build_rocket_result = state.build_rocket(index);
+            self.log_build_rocket();
             return match build_rocket_result {
                 Ok(_) => Some(state.take_rocket().unwrap()),
                 Err(_) => None,
@@ -225,7 +240,6 @@ impl PlanetAI for AI {
         _combinator: &Combinator,
         _explorer_id: u32,
     ) {
-        todo!()
     }
 
     fn on_explorer_departure(
@@ -235,14 +249,11 @@ impl PlanetAI for AI {
         _combinator: &Combinator,
         _explorer_id: u32,
     ) {
-        todo!()
     }
 
     fn on_start(&mut self, _state: &PlanetState, _generator: &Generator, _combinator: &Combinator) {
-        todo!()
     }
 
     fn on_stop(&mut self, _state: &PlanetState, _generator: &Generator, _combinator: &Combinator) {
-        todo!()
     }
 }
