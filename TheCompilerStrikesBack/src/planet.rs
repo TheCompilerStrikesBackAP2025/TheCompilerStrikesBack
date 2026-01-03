@@ -8,18 +8,18 @@ PLANET CONFIGURATION:
 use crate::planet_ai::AI;
 use common_game::components::planet::{Planet, PlanetType};
 use common_game::components::resource::{BasicResourceType, ComplexResourceType};
-use common_game::protocols::messages;
+use common_game::protocols::orchestrator_planet::{OrchestratorToPlanet, PlanetToOrchestrator};
+use common_game::protocols::planet_explorer::ExplorerToPlanet;
 use crossbeam_channel::{Receiver, Sender};
 
-// ISSUE 100 = the following method should become part of a trait
 pub fn create_planet(
-    rx_orchestrator: Receiver<messages::OrchestratorToPlanet>,
-    tx_orchestrator: Sender<messages::PlanetToOrchestrator>,
-    rx_explorer: Receiver<messages::ExplorerToPlanet>,
+    rx_orchestrator: Receiver<OrchestratorToPlanet>,
+    tx_orchestrator: Sender<PlanetToOrchestrator>,
+    rx_explorer: Receiver<ExplorerToPlanet>,
     planet_id: u32,
 ) -> Planet {
     let id = planet_id;
-    let ai = AI::default();
+    let ai = AI::new(id);
     let gen_rules = vec![BasicResourceType::Silicon];
     let comb_rules = vec![
         ComplexResourceType::Robot,
@@ -38,6 +38,5 @@ pub fn create_planet(
         rx_explorer,
     );
 
-    // ISSUE 98 = no room, inside of this constructor, for errors, just unwrapping
     planet_creation_result.unwrap()
 }
