@@ -392,8 +392,9 @@ fn test_planet_explorer() {
         .unwrap();
     // 6. Verify Ack from Planet
     match rx_orch.recv() {
-        Ok(PlanetToOrchestrator::IncomingExplorerResponse { planet_id, res, .. }) => {
+        Ok(PlanetToOrchestrator::IncomingExplorerResponse { planet_id, explorer_id: received_explorer_id, res, .. }) => {
             assert_eq!(planet_id, pln_id);
+            assert_eq!(received_explorer_id, explorer_id);
             assert!(res.is_ok());
         }
         _ => panic!("Expected IncomingExplorerResponse"),
