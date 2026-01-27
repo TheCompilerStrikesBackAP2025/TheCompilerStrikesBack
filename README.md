@@ -5,7 +5,7 @@ You can add this library to your Rust project directly from crates.io or Git rep
 ## crates.io
 
 ```toml
-the-compiler-strikes-back = "0.1.0"
+the-compiler-strikes-back = "0.2.0"
 ```
 
 ## Git repository
